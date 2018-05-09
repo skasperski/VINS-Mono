@@ -6,6 +6,7 @@
 #include <std_msgs/Bool.h>
 #include <cv_bridge/cv_bridge.h>
 #include <message_filters/subscriber.h>
+#include <image_transport/image_transport.h>
 
 #include "feature_tracker.h"
 
@@ -228,7 +229,8 @@ int main(int argc, char **argv)
         }
     }
 
-    ros::Subscriber sub_img = n.subscribe(IMAGE_TOPIC, 100, img_callback);
+    image_transport::ImageTransport it(n);
+    image_transport::Subscriber sub_img = it.subscribe(IMAGE_TOPIC, 1, img_callback);
 
     pub_img = n.advertise<sensor_msgs::PointCloud>("feature", 1000);
     pub_match = n.advertise<sensor_msgs::Image>("feature_img",1000);

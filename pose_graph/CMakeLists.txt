@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
     camera_model
     cv_bridge
     roslib
+    image_transport
     )
 
 find_package(OpenCV)
